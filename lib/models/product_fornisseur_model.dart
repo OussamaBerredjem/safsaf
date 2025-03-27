@@ -16,6 +16,7 @@ class ProductFornisseurModel extends Product {
       required super.categorie,
       required super.sousCategorie,
       required super.stock,
+      required super.min_commande,
       required super.newer});
 
   factory ProductFornisseurModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +35,7 @@ class ProductFornisseurModel extends Product {
       sousCategorie: int.tryParse(json['sous_categorie'].toString()) ?? 0,
       stock: int.tryParse(json['stock'].toString()) ?? 0,
       newer: int.tryParse(json['newer'].toString()) ?? 0,
+      min_commande: int.tryParse(json['min_commande'].toString()) ?? 2,
     );
   }
 }

@@ -5,11 +5,17 @@ class AppTranslations extends Translations {
   Map<String, Map<String, String>> get keys => {
         'en': {
           // English translations
+          "Are you sure you want to logout?":"Are you sure you want to logout?",
           'Welcome back !': 'Welcome back !',
           'Enter ur number and password to continue':
               'Enter your email and password to continue',
           'max length 10': 'Max length 10',
           'update': 'Update',
+          "Shopping Setting": "Shopping Setting",
+          "Bulk shopping": 'Bulk shopping',
+          "Retail shopping": 'Retail shopping',
+          "Cancel": 'Cancel',
+          "Save": 'Save',
           'Delete Account Permanently':'Delete Account Permanently',
           'Incorrect password':'Incorrect password','This action is permanent and cannot be undone. Please enter your password to confirm.':'This action is permanent and cannot be undone. Please enter your password to confirm.',
           'Delete Account':'Delete Account',
@@ -71,8 +77,8 @@ class AppTranslations extends Translations {
               'Confirm password cannot be empty',
           'create your new acccount et joindre nous':
               'Create your new account and join us',
-          'Fullname must be at least 8 characters long':
-              'Fullname must be at least 6 characters long',
+          'Fullname must be at least 3 characters long':
+              'Fullname must be at least 3 characters long',
           'Fullname': 'Fullname',
           "Search for a product": "Search for a product",
           'Number must be 10 characters': 'Number must be 10 characters',
@@ -107,12 +113,14 @@ class AppTranslations extends Translations {
               'Please login to view your profile',
           'Personal Information': 'Personal Information',
           'Fullname cannot be empty': 'Fullname cannot be empty',
-          'Fullname must be more than 6 character':
-              'Fullname must be more than 6 characters',
+          'Fullname must be more than 3 character':
+              'Fullname must be more than 3 characters',
           'number must be not empty': 'Number must not be empty',
           'number must be 10 character': 'Number must be 10 characters',
           'Edit votre localisation': 'Edit your location',
           'Save': 'Save',
+          "Yes": "Yes",
+          "No": "No",
           "Error Submiting Order": "Error Submiting Order",
           'Edit': 'Edit',
           'Cancell': 'Cancel',
@@ -166,17 +174,22 @@ class AppTranslations extends Translations {
           'No products found': 'Aucun produit trouvé',
           "Personal Information": "Information personnelle",
           'you don\'t have an account ?': 'Vous n\'avez pas de compte ?',
-
+ "Shopping Setting": "Paramètres d'achat",
+          "Bulk shopping": 'Shopping en gros',
+          "Retail shopping": 'Shopping en détail',
+          "Cancel": 'Annuler',
+          "Save": 'Enregistrer',
           'Signup !': 'Inscription !',
           'create your new acccount et joindre nous':
               'Créez votre nouveau compte et rejoignez-nous',
-          'Fullname must be at least 8 characters long':
-              'Le nom complet doit contenir au moins 6 caractères',
+          'Fullname must be at least 3 characters long':
+              'Le nom complet doit contenir au moins 3 caractères',
           'Fullname': 'Nom complet',
           'Changer de langue': 'Changer de langue',
           'Select Language': 'Sélectionner la langue',
           'Number must be 10 characters':
               'Le numéro doit contenir 10 caractères',
+              "Are you sure you want to logout?": "Êtes-vous sûr de vouloir vous déconnecter ?",
           'Orders': 'Commandes',
           'Choisir votre localisation': 'Choisir votre localisation',
           'Password must be at least 8 characters long':
@@ -221,8 +234,8 @@ class AppTranslations extends Translations {
               'Veuillez vous connecter pour voir votre profil',
           'Personal Information': 'Informations personnelles',
           'Fullname cannot be empty': 'Le nom complet ne peut pas être vide',
-          'Fullname must be more than 6 character':
-              'Le nom complet doit contenir plus de 6 caractères',
+          'Fullname must be more than 3 character':
+              'Le nom complet doit contenir plus de 3 caractères',
           'number must be not empty': 'Le numéro ne doit pas être vide',
           'number must be 10 character':
               'Le numéro doit contenir 10 caractères',
@@ -275,6 +288,8 @@ class AppTranslations extends Translations {
           'optional_update_message':
               'Une nouvelle version est disponible. Mettre à jour maintenant ?',
           'update_now': 'Mettre à jour',
+          "Yes": "Oui",
+          "No": "Non",
           'later': 'Plus tard',
           "DA": 'DA',
           'logout': 'Déconnexion',
@@ -294,6 +309,11 @@ class AppTranslations extends Translations {
           'CommmandeID': 'رقم الطلب',
             'your account has been removed':'تم حذف حسابك',
           'maintenance_title': 'وضع الصيانة',
+           "Shopping Setting": "إعدادات التسوق",
+            "Bulk shopping": "التسوق بالجملة",
+            "Retail shopping": 'التسوق بالتجزئة',
+          "Cancel": 'إلغاء',
+          "Save": 'حفظ',
           'maintenance_message':
               'التطبيق قيد الصيانة. يرجى المحاولة مرة أخرى لاحقًا.',
           'force_update_title': 'مطلوب تحديث',
@@ -326,6 +346,9 @@ class AppTranslations extends Translations {
           'Profile': 'الملف الشخصي',
           'Password': 'كلمة المرور',
           'Contacter nous': 'اتصل بنا',
+          "Are you sure you want to logout?": 'هل أنت متأكد من تسجيل الخروج؟',
+          "Yes": 'نعم',
+          "No": 'لا',
           'Description': 'الوصف',
           "Personal Information": 'معلومات شخصية',
           'password must not be empty': 'كلمة المرور لا يمكن أن تكون فارغة',
@@ -365,8 +388,8 @@ class AppTranslations extends Translations {
               'أنشئ حسابك الجديد وانضم إلينا',
           'Changer de langue': 'تغيير اللغة',
           'Select Language': 'اختر اللغة',
-          'Fullname must be at least 8 characters long':
-              'يجب أن يكون الاسم الكامل 6 أحرف على الأقل',
+          'Fullname must be at least 3 characters long':
+              'يجب أن يكون الاسم الكامل 3 أحرف على الأقل',
           'Fullname': 'الاسم الكامل',
           'Number must be 10 characters':
               'يجب أن يكون الرقم الهاتف الهاتف 10 أحرف',
@@ -395,8 +418,8 @@ class AppTranslations extends Translations {
               'الرجاء تسجيل الدخول لعرض ملفك الشخصي',
           'Personal Information': 'المعلومات الشخصية',
           'Fullname cannot be empty': 'الاسم الكامل لا يمكن أن يكون فارغًا',
-          'Fullname must be more than 6 character':
-              'الاسم الكامل يجب أن يكون أكثر من 6 أحرف',
+          'Fullname must be more than 3 character':
+              'الاسم الكامل يجب أن يكون أكثر من 3 أحرف',
           'number must be not empty': 'الرقم الهاتف لا يمكن أن يكون فارغًا',
           'number must be 10 character': 'الرقم الهاتف يجب أن يكون 10 أحرف',
           'Edit votre localisation': 'تعديل موقعك',

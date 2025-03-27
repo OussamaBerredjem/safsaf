@@ -127,8 +127,8 @@ class _PersonalScreenState extends State<ProfileScreen> {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "Fullname cannot be empty".tr;
-                                  } else if (value.length < 6) {
-                                    return "Fullname must be more than 6 character"
+                                  } else if (value.length < 3) {
+                                    return "Fullname must be more than 3 character"
                                         .tr;
                                   }
                                   return null;

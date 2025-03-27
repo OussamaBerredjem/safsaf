@@ -4,7 +4,9 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:multi_vendor/controllers/index_controller.dart';
+import 'package:multi_vendor/controllers/msetting_controller.dart';
 import 'package:multi_vendor/main_constant.dart';
 import 'package:multi_vendor/models/categorie_model.dart';
 import 'package:multi_vendor/models/fornisseur_model.dart';
@@ -49,65 +51,101 @@ class _MyWidgetState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    products = ProductsLoading();
-    Products();
+   
     _controller.addListener(() async {
       if (_controller.position.pixels >=
               _controller.position.maxScrollExtent - 150 &&
           !_loading) {
         _loading = true;
         Products();
+        print("retry - call api from controller");
       }
     });
 
     CheckUpdate().checkUpdate();
   }
 
+  bool from_setState = true;
+
+
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      controller: _controller,
-      slivers: [
-        SliderBuilder(),
-        Search(),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
-            child: Text(
-              "Fornisseurs".tr,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
-        ),
-        FornisseursBuilder(),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
-            child: Text(
-              "Categories".tr,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
-        ),
-        CategoriesBuilder(),
-        products,
-        SliverToBoxAdapter(
-            child: Visibility(
-          visible: _visible,
-          child: Container(
-              margin: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.sizeOf(context).width * 0.43),
-              height: MediaQuery.sizeOf(context).width * 0.13,
-              width: 60,
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircularProgressIndicator(
-                  color: MAIN_COLOR,
+    return GetBuilder<MSettingController>(
+        
+        initState: (state) {
+           products = ProductsLoading();
+           Products();
+
+        },
+        didUpdateWidget: (oldWidget, state) {
+         
+           
+          
+
+        },
+        tag: "setting",
+        builder: (setting) {
+          if(setting.change){
+            _listproducts = [];
+            _page_get = 1;
+            products = ProductsLoading();
+            Products();
+            }
+
+           setting.change = false;
+           
+          return CustomScrollView(
+            controller: _controller,
+            slivers: [
+              SliderBuilder(),
+              setting.isGrossist
+                  ? SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 8),
+                        child: Text(
+                          "Fornisseurs".tr,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ),
+                    )
+                  : const SliverToBoxAdapter(),
+              setting.isGrossist
+                  ? FornisseursBuilder()
+                  : const SliverToBoxAdapter(),
+              Search(),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+                  child: Text(
+                    "Categories".tr,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                 ),
-              )),
-        ))
-      ],
-    );
+              ),
+              CategoriesBuilder(),
+              products,
+              SliverToBoxAdapter(
+                  child: Visibility(
+                visible: _visible,
+                child: Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.sizeOf(context).width * 0.43),
+                    height: MediaQuery.sizeOf(context).width * 0.13,
+                    width: 60,
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(
+                        color: MAIN_COLOR,
+                      ),
+                    )),
+              ))
+            ],
+          );
+        });
   }
 
   SliverToBoxAdapter SliderBuilder() {
@@ -282,9 +320,9 @@ class _MyWidgetState extends State<HomeScreen> {
                               fornisseur: snapshot.data![position],
                             );
                           });
-                    }else if (snapshot.hasError) {
-                       WidgetsBinding.instance.addPostFrameCallback((_) {
-                          showFornisseurs.value = false;
+                    } else if (snapshot.hasError) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        showFornisseurs.value = false;
                       });
                     }
 
@@ -317,9 +355,12 @@ class _MyWidgetState extends State<HomeScreen> {
       ),
       delegate: SliverChildBuilderDelegate(
         (context, position) {
-          return ProductItem(
-            loading: true,
-            product: Product.emptyProduct(),
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 4),
+            child: ProductItem(
+              loading: true,
+              product: Product.emptyProduct(),
+            ),
           );
         },
         childCount: 4,
@@ -403,6 +444,7 @@ class _MyWidgetState extends State<HomeScreen> {
     if (!mounted) return;
 
     setState(() {
+      from_setState = true;
       products = ProductsGrid();
       if (l.isNotEmpty) {
         _page_get = _page_get + 1;

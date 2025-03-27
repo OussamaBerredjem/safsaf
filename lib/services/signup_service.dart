@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,8 +17,11 @@ class SignupService {
 
   Future<void> Signup(SignupModel user) async {
     try {
+      Map<String, dynamic> d = user.toJSon();
+      String? token =await FirebaseMessaging.instance.getToken();
+      d['token'] = token;
       final response = await _dio.post(SIGNUP_ENDPOINT,
-          data: user.toJSon(),
+          data: d,
           options: Options(headers: {'Authorization': TOKEN}));
 
       final Map<String, dynamic> cartData = _storage.read(_cartKey) ?? {};

@@ -17,6 +17,7 @@ class Product {
   final int newer;
   bool discountCalcul = true;
   int realprice;
+  final int min_commande;
 
   Product(
       {required this.id,
@@ -32,6 +33,7 @@ class Product {
       required this.sousCategorie,
       required this.stock,
       required this.newer,
+      this.min_commande = 1,
       this.discountCalcul = true,
       this.realprice = 0}) {
     if (discountCalcul) {
@@ -55,6 +57,7 @@ class Product {
         id = 86,
         realprice = 100,
         stock = 0,
+        min_commande = 2,
         newer = 0;
 
   // Factory method to create a Product from a JSON map
@@ -72,6 +75,7 @@ class Product {
         categorie: json['categorie'] ?? 0,
         sousCategorie: json['sous_categorie'] ?? 0,
         newer: json['new'] ?? 0,
+        min_commande: int.tryParse(json['min_commander'].toString()) ?? 1,
         stock: int.parse(json['stock']));
   }
 
@@ -89,14 +93,17 @@ class Product {
       'image_path': imagePath,
       'categorie': categorie,
       'sous_categorie': sousCategorie,
-      'stock': stock.toString()
+      'stock': stock.toString(),
+      'new': newer,
+      'min_commander': min_commande,
     };
   }
 
   CartModel toCartModel() {
     discountCalcul = false;
+    print("min_commander: $min_commande");
     return CartModel(
-        quantity: 1,
+        quantity: min_commande,
         id: id,
         name: name,
         description: description,
@@ -107,6 +114,7 @@ class Product {
         imagePath: imagePath,
         categorie: categorie,
         stock: stock,
+        min_commande: min_commande,
         discountCalcul: false);
   }
 
