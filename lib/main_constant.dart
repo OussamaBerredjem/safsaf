@@ -1,6 +1,8 @@
 import 'dart:ui';
 
-const API_LINK = "https://safsafdz.com";
+const API_LINK = "your server link";
+const TOKEN = "your server token";
+
 const LOGIN_ENDPOINT = "$API_LINK/user-login";
 const SIGNUP_ENDPOINT = "$API_LINK/user-registers";
 const PRODUCT_ENDPOINT = "$API_LINK/products";
@@ -8,7 +10,7 @@ const IMAGES_ENDPOINT = "$API_LINK/";
 const CATEGORIES_ENDPOINT = "$API_LINK/categories";
 const SLIDERS_ENDPOINT = "$API_LINK/slides";
 const SLIDERS_IMAGES_ENDPOINT = "$API_LINK/images/";
-const TOKEN = "Bearer 78heoytx56drg4ezd16q3df782";
+
 const UPDATE_PROFILE = "$API_LINK/user-update/";
 const SUBMIT_ORDER = "$API_LINK/orders";
 const PASSWORD_RESET = "$API_LINK/reset-passwordee";
